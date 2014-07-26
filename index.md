@@ -14,7 +14,7 @@ knit        : slidify::knit2slides
 
 ## The iris dataset
 
-The iris dataset is a collection of measurements collected from 
+The iris dataset is a collection of measurements gathered from 
 50 flowers of 3 different species.
 
 This dataset is bundled with R, and can be examined with the `iris` variable.
