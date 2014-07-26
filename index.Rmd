@@ -1,0 +1,75 @@
+---
+title       : Iris dataset data analysis
+subtitle    : Analyzing linear correlations of the iris dataset
+author      : Francisco Sokol
+job         : Software Developer - Caelum - Brazil, Sao Paulo
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+
+--- .class #id 
+
+## The iris dataset
+
+The iris dataset is a collection of measurements gathered from 
+50 flowers of 3 different species.
+
+This dataset is bundled with R, and can be examined with the `iris` variable.
+
+The following variables are available in the dataframe:
+
+```{r}
+names(iris)
+```
+
+---
+## The iris dataset
+
+Here is a summary of the dataframe:
+
+```{r}
+summary(iris)
+```
+
+---
+
+## Linear correlations
+
+When anlysing the whole dataset, there seems to be a some positive linear correlation
+between Sepal and Petal Length:
+
+```{r echo=FALSE}
+iris.lm <- lm(iris$Petal.Length ~ iris$Sepal.Length)
+
+plot(iris$Sepal.Length, iris$Petal.Length, pch=19)
+abline(iris.lm, col="blue")
+```
+
+---
+
+## Linear correlations
+
+But when we partition the data between the three different species, we can see that
+this correlantion is higher:
+
+```{r echo=FALSE}
+virginica = iris[iris$Species=="virginica",]
+virginica.lm <- lm(virginica$Petal.Length ~ virginica$Sepal.Length)
+
+setosa = iris[iris$Species=="setosa",]
+setosa.lm <- lm(setosa$Petal.Length ~ setosa$Sepal.Length)
+
+versicolor = iris[iris$Species=="versicolor",]
+versicolor.lm <- lm(versicolor$Petal.Length ~ versicolor$Sepal.Length)
+
+plot(iris$Sepal.Length, iris$Petal.Length, pch=19, col=iris$Species)
+abline(virginica.lm, col="green")
+abline(setosa.lm, col="black")
+abline(versicolor.lm, col="red")
+legend("topleft", inset=0.01, c("setosa", "versicolor", "virginica"), pch=19, 
+             col=c("black", "red", "green"), title="Species")
+```
+
