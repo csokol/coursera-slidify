@@ -62,7 +62,7 @@ summary(iris)
 
 ## Linear correlations
 
-When anlysing the whole dataset, there seems to be a some positive linear correlation
+When anlysing the whole dataset, there seems to be some positive linear correlation
 between Sepal and Petal Length:
 
 ![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3.png) 
